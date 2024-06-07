@@ -10,12 +10,19 @@
         *{
             border: 1px solid blue;
         }
+        #navbar{
+            background-color: #1675F2;
+            width: 100%;
+        }
+        #wrap{
+            background-color: #F2F2EB; 
+        }
     </style>
 </head>
 <body>
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav id="navbar" class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +60,7 @@
     </nav>
 
 
-    <div class="container">
+    <div id="wrap" class="container">
         <div class="row">
             <div class="col-12">
                 <div class="btn-group">
@@ -86,11 +93,21 @@
                         <li><a class="dropdown-item" href="#" onclick="pop()">Something else here</a></li>
                     </ul>
                 </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        과목
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="pop()">평균</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="pop()">표준분포</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="pop()">Something else here</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-5">
-                <canvas id="myChart"></canvas>
+                <canvas id="scoreChart"></canvas>
             </div>
             <div class="col-5">
                 <table class="table">
@@ -101,6 +118,16 @@
 
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div id="average">
+                    평균 : 
+                </div>
+                <div id="std">
+                    표준편차 : 
+                </div>
             </div>
         </div>
     </div>
