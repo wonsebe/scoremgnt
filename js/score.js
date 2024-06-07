@@ -47,9 +47,11 @@ function pop(){
 }
 
 function setYear(num){ // 현재 선택한 학년
-
+    selYear = num;
+    console.log("선택한 학년 : "+selYear)
 }
 
 function setClass(num){ // 현재 선택한 반
-
+    selClass = num;
+    console.log("선택한 반 : "+selClass)
 }
