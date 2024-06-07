@@ -13,7 +13,8 @@
 */
 
 let score = [{scoreNum : 1, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.1}]
-
+let selYear = 0;
+let selClass = 0;
 drawChart();
 
 function drawChart(){ // 학년 반 선택 후 반 단위 점수 그래프
@@ -45,10 +46,10 @@ function pop(){
     console.log("pop")
 }
 
-function setYear(){
+function setYear(num){ // 현재 선택한 학년
 
 }
 
-function setClass(){
+function setClass(num){ // 현재 선택한 반
 
 }
