@@ -18,27 +18,33 @@ let selClass = 0;
 drawChart();
 
 function drawChart(){ // 학년 반 선택 후 반 단위 점수 그래프
-    const ctx = document.querySelector("#myChart");
+    
+    if (selYear != 0 && selClass !=0){
+        console.log("")
         
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        const ctx = document.querySelector("#myChart");
+            
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-        }
-    );
+            }
+        );
+
+    }
 
 }
 
@@ -49,9 +55,11 @@ function pop(){
 function setYear(num){ // 현재 선택한 학년
     selYear = num;
     console.log("선택한 학년 : "+selYear)
+    drawChart();
 }
 
 function setClass(num){ // 현재 선택한 반
     selClass = num;
     console.log("선택한 반 : "+selClass)
+    drawChart();
 }
