@@ -2,26 +2,20 @@
 
 // 글작성
 
-let boardList = []
+let boardList = [
+    {no : 1,title : 'TEST입니다.',writer : '본인',date : '2024-6-08', view : '5' , content : '내용들어갑니다'}
+]
 
 function _write() { console.log('_write()');
 
-    boardList= JSON.parse(localStorage.getItem('boardList'));
-    if(boardList = null){boardList = [];}
-
-    //HTML데이터 호출
     let title = document.querySelector('#title').value;
     let content = document.querySelector('#content').value;
 
     let write = ``;
 
-    let memberList = [];
-    memberList = JSON.parse(localStorage.getItem('memberList'));
-    if(memberList == null){memberList = [];}
-
-    for(let i = 0 ; i < memberList.length ; i++){
-        if(memberList[i].no == loginNo){
-            writer = memberList[i].name;
+    for(let i = 0 ; i < boardList.length ; i++){
+        if(boardList[i].wirter == writer){
+            writer = boardList[i].name;
             break;
         }
     }
@@ -38,8 +32,7 @@ function _write() { console.log('_write()');
     //추가
     boardList.push(board);
     //저장
-    localStorage.setItem('boardList' , JSON.stringify(boardList));
-
+    
     alert('작성 되었습니다.');
     location.href="board.html";
 
