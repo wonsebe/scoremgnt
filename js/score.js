@@ -15,16 +15,16 @@
 */
 
 let score = [
-    {scoreNum : 1, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.1}
-    {scoreNum : 2, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.2}
-    {scoreNum : 3, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.3}
+    {scoreNum : 1, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.1},
+    {scoreNum : 2, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.2},
+    {scoreNum : 3, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.3},
     {scoreNum : 4, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.4}
 ]
 
 let student = [
     {studentNum : 1, studentName : "aaa", studentCode : 10101, contact : 123-456-7890, pw : 1234},
-    {studentNum : 2, studentName : "bbb", studentCode : 10101, contact : 123-456-7890, pw : 1234}
-    {studentNum : 3, studentName : "ccc", studentCode : 10101, contact : 123-456-7890, pw : 1234}
+    {studentNum : 2, studentName : "bbb", studentCode : 10101, contact : 123-456-7890, pw : 1234},
+    {studentNum : 3, studentName : "ccc", studentCode : 10101, contact : 123-456-7890, pw : 1234},
     {studentNum : 4, studentName : "ddd", studentCode : 10101, contact : 123-456-7890, pw : 1234}
 ]
 
@@ -41,7 +41,7 @@ function drawChart(){ // 학년 반 선택 후 반 단위 점수 그래프
         console.log(`${selYear}학년 ${selClass}반 ${subName}과목 그래프`)
         for (s of student) {// 차트 data 구축 : 학년 반 과목을 고른 후
             let codeData = codeSplit();
-            if ()
+            //if () {}
             let x 
 
         }
@@ -123,10 +123,10 @@ function subjectName(){
     }
 }
 
-function codeSplit(studentCode){ // 학번 쪼개기 1 / 01 / 01 학년/반/번호
-    let code = studentCode
-    let 학년 = code / 10000 
-    let 반 = (code - 학년*10000) / 100
-    let 번호 = ((code - 학년*10000) - 반
-
+function codeSplit(studentCode){ // 학번 쪼개기 1 / 01 / 01 -> {학년 year / 반 class / 번호 no}
+    let code = Number(studentCode);
+    let year = parseInt(code / 10000);
+    let clas = parseInt((code - year*10000) / 100)
+    let no = parseInt((code - year*10000) - clas*100)
+    return {"year" : year, "class" : clas, "no" : no};
 }
