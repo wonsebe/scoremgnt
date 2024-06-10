@@ -17,6 +17,10 @@
         #wrap{
             background-color: #F2F2EB; 
         }
+        tbody {
+            height: 150px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -85,12 +89,24 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        점수 분석
+                        시험연도
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" onclick="pop()">평균</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="pop()">표준분포</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="pop()">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestYear(2021)">2021</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestYear(2022)">2022</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestYear(2023)">2023</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestYear(2024)">2024</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        시험회차
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="setTestMonth(1)">3월</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestMonth(2)">6월</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestMonth(3)">9월</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTestMonth(4)">11월</a></li>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -98,9 +114,19 @@
                         과목
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" onclick="pop()">평균</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="pop()">표준분포</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="pop()">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setSubject(1)">국어</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setSubject(2)">영어</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setSubject(3)">수학</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setSubject(4)">사회/과학</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        점수분석
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="setScoreMode(1)">평균</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setScoreMode(2)">표준분포</a></li>
                     </ul>
                 </div>
             </div>
