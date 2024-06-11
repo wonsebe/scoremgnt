@@ -1,35 +1,61 @@
-let boardList = [
-    {no : 1,title : 'TEST입니다.',writer : '본인',date : '2024-6-08', view : '5' , content : '내용들어갑니다'}
-]
+let urlParams = new URL(location.href).searchParams;
+let no = urlParams.get('no');
+
+let boardList = []
 
 
 board();
-function remove () {
+logincheck();
+logincheck2();
+
+function board(){
+    //어디에 
+    let boardBox = document.querySelector('#boardBox');
+    //무엇을
+    let html = ``;
+
+    boardList = JSON.parse(localStorage.getItem('boardList'));
+    if(boardList == null){boardList = [];}
+
+    let findindex = -1;
+    for(let i = 0 ; i < boardList.length; i++){
+        if(boardList[i].no == no){findindex = i; break;}    
+    }
+    let board = boardList[findindex];
+
+    html+= `<div>${ boardList[ findindex ].title }</div>
+            <div>${ boardList[ findindex ].content }</div>
+            <div>${ boardList[ findindex ].no }</div>
+            <div>${ board.writer }</div>
+            <div>${ board.date }</div>
+            <div>${ board.view }</div>`
+
+    //출력
+    boardBox.innerHTML = html;
+}
+
+function remove() {
+
     let findboard = -1;
     for(let i =0; i<boardList.length; i++){
         if(boardList[i].no == no){findboard = i; break;}
     }
-
-    if(myboardcheck(findboard) == false){
-        alert('게시물의 작성자만 삭제 가능합니다.');
-        return;
-    }
-
     boardList.splice(findboard , 1); //배열내 객체를 삭제
 
+    localStorage.setItem('boardList' , JSON.stringify(boardList));
+
     alert('삭제 성공');
+    location.href="board.html";
     return;
 }
 
 function retouch() {
-    location.href="retouch.html";
-}
 
-function board (){
-    //어디에 
-    let board
-    //무엇을
-    let html = ``;
-    //출력
+    let findboard = -1;
+    for(let i = 0; i < boardList.length; i++ ){
+        if(boardList[i].no == no){findboard = i; break;}
+    }
+
+    location.href=`retouch.html?no=${ no }`;
     
 }
