@@ -32,4 +32,3 @@ function printboard() {
     //출력
     boardtbody.innerHTML = html;
 }
-

@@ -45,4 +45,3 @@ function signup(){
     alert('학생등록완료!'); location.href='../html/stutable.html';
 
 }
-
