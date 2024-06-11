@@ -13,7 +13,7 @@ let scoreList = [
     {scoreNum : 7, studentNum : 4, korean : 85, english : 100, math : 100, selective : 50, testDate : 2024.4}
 ]
 
-localStorage.setItem('student', JSON.stringify(student));
+// localStorage.setItem('student', JSON.stringify(student));
 
 
 function logout() {
