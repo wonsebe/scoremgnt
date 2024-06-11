@@ -19,13 +19,21 @@ function signup(){
 
     //유효성검사
      //1. 아이디와 비밀번호는 5글자 이상만 가능
-     
+    
+
      if(sInfo.length <6  ){
         alert('학번은 6글자 이상 넣어주세요.'); return;
         }
 
+        if(pw.length <3){
+            alert('비밀번호는 4글자 이상 입력해주세요'); return;
+
+        }
+       
      //2. 이름은 3글이상 이상 만 가능
      if(name.length <3){alert('학생등록실패! 이름은 3글자 이상만 넣어주세요'); return;}
+
+     if(phone.length<8){alert('연락처는 8자리 이상 입력')}
     
       //만약에 회원목록에 회원이 없으면 1 있으면 마지막회원의 번호 +1
       let no= studentList.length == 0? 1: studentList[studentList.length-1].no +1 //마지막 번호에 부여

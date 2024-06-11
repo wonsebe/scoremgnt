@@ -39,6 +39,15 @@ h3{
     padding: 10px;
 }
 
+a{
+    text-decoration: none;
+    color: rgb(176, 52, 229);
+    
+}
+
+h3{
+    padding: 30px;
+}
   </style>
 
 </head>
@@ -57,10 +66,11 @@ h3{
               <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
 
-                      <li class="nav-item"><a class="nav-link" href="login.html">출결관리시스템 |</a> </li>
-                      <li class="nav-item"><a class="nav-link" href="register.html"> 학생부 |</a> </li>
-                      <li class="nav-item"><a class="nav-link" href="score.html">모의고사 성적 |</a> </li>
-                      <li class="nav-item"><a class="nav-link" href="#">학생 게시판 |</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="register.html">출결관리시스템 </a> </li>
+                    <li class="nav-item"><a class="nav-link" href="stutable.html"> 학생부  </a> </li>
+                    <li class="nav-item"><a class="nav-link" href="../score.html">모의고사 성적  </a> </li>
+                    <li class="nav-item"><a class="nav-link" href="../게시판/board.html">학생 게시판 </a> </li>
+                    
         
                     </ul>
 
@@ -71,25 +81,29 @@ h3{
           </div>
       </nav>
   </div>
-    <div class="container">
       
 
         <div id="viewPage">
-            
-            <h3>수정 페이지</h3>
+            <h3>학생 상세 페이지</h3>
+                <a href="stutable.html">학생부 목록보기</a> <br/>
+               
+           
+            <div id="stuBox">
+             
 
+            </div>
+            <button onclick="__modify()" type="button">수정</button>
+            
 
         </div>
             
     
 
 
-    </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script src='수정할페이지.js'></script>
+    <script src='수정페이지.js'></script>
+
 
 </body>
 </html>
