@@ -41,10 +41,10 @@ function add() {
     let inputMath = Number(document.querySelector("#inputMath").value);
     let inputSelective = Number(document.querySelector("#inputSelective").value);
 
-    if (isNumber(inputCode) == false || inputCode > 40000 || inputCode < 10000) {alert("학번이 잘못되었습니다"); setDefault(); return;}
-    else if (isNumber(inputYear) == false || inputYear < 1000 || inputYear >= 10000) {alert("시험연도가 잘못되었습니다"); setDefault(); return;} 
-    else if (inputMonth == '회차') {alert("회차를 선택해 주세요"); setDefault(); return;}
-    else if (scoreCheck(inputKor) == false || scoreCheck(inputEng) == false || scoreCheck(inputMath) == false || scoreCheck(inputSelective) == false) {alert("점수를 확인해 주세요"); setDefault(); return;}
+    //if (isNumber(inputCode) == false || inputCode > 40000 || inputCode < 10000) {alert("학번이 잘못되었습니다"); setDefault(); return;}
+    //if (isNumber(inputYear) == false || inputYear < 1000 || inputYear >= 10000) {alert("시험연도가 잘못되었습니다"); setDefault(); return;} 
+    if (inputMonth == '회차') {alert("회차를 선택해 주세요"); setDefault(); return;}
+    if (scoreCheck(inputKor) == false || scoreCheck(inputEng) == false || scoreCheck(inputMath) == false || scoreCheck(inputSelective) == false) {alert("점수를 확인해 주세요"); setDefault(); return;}
 
     let inputTestDate = `${inputYear}.${inputMonth}`
     let inputScoreNum = scoreList.length == 0 ? 1 : scoreList.length + 1
