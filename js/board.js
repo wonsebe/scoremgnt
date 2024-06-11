@@ -5,7 +5,7 @@ logincheck();
 logincheck2();
 
 function add() { console.log('add()');
-     location.href="write.html";
+     location.href="../html/write.html";
 }
 
 printboard();

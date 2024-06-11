@@ -119,7 +119,7 @@ function _delete(no){
       localStorage.setItem('student', JSON.stringify(student)); // 삭제 최신화 
 
       alert('삭제 성공');
-      location.href="stutable.html";
+      location.href="../html/stutable.html";
       return;
      
   }
@@ -137,7 +137,7 @@ function __modify(no){
     console.log( student );
     
     //무엇을 수정할건지 매개변수 전달
-    location.href=`수정페이지.html?no=${ student[findBoardIndex].studentNum }`;
+    location.href=`../html/수정페이지.html?no=${ student[findBoardIndex].studentNum }`;
 
 }
 

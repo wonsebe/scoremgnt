@@ -47,17 +47,17 @@ function logincheck2() {
     let html = ``;
 
     if(loginNo == 0){
-       html += `<li class="nav-item"><a class="nav-link" href="main.html">메인화면 </a> </li>
-        <li class="nav-item"><a class="nav-link" href="../출결시스템/register.html">출결관리시스템 </a> </li>
-        <li class="nav-item"><a class="nav-link" href="../출결시스템/stutable.html"> 학생부  </a> </li>
-        <li class="nav-item"><a class="nav-link" href="../score.html">모의고사 성적  </a> </li>
-        <li class="nav-item"><a class="nav-link" href="board.html">학생 게시판 </a> </li>`
+       html += `<li class="nav-item"><a class="nav-link" href="../html/main.html">메인화면 </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html/register.html">출결관리시스템 </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html/stutable.html"> 학생부  </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html//score.html">모의고사 성적  </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html/board.html">학생 게시판 </a> </li>`
     } else if(loginNo != -1){
-        html += `<li class="nav-item"><a class="nav-link" href="main.html">메인화면 </a> </li>
-        <li class="nav-item"><a class="nav-link" href="../score.html">모의고사 성적  </a> </li>
-        <li class="nav-item"><a class="nav-link" href="board.html">학생 게시판 </a> </li>`
+        html += `<li class="nav-item"><a class="nav-link" href="../html/main.html">메인화면 </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html//score.html">모의고사 성적  </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../html/board.html">학생 게시판 </a> </li>`
       } else{
-          location.href="../출결시스템/login.html"
+          location.href="../html//출결시스템/login.html"
       }
 
 
@@ -74,13 +74,13 @@ function logincheck() {
 
     if(loginNo == 0){
       html += `<li class="nav-item"><a class="nav-link"> 관리자 </a> </li>`;
-      html += `<li class="nav-item"><a class="nav-link" href="../출결시스템/login.html" onclick="logout()">로그아웃</a> </li>`
+      html += `<li class="nav-item"><a class="nav-link" href="../html//login.html" onclick="logout()">로그아웃</a> </li>`
     }
     else if(loginNo != -1){
       html += `<li class="nav-item"><a class="nav-link"> 학생 </a> </li>`;
-      html += `<li class="nav-item"><a class="nav-link" href="../출결시스템/login.html" onclick="logout()">로그아웃</a> </li>`
+      html += `<li class="nav-item"><a class="nav-link" href="../html/login.html" onclick="logout()">로그아웃</a> </li>`
     } else{
-        location.href="../출결시스템/login.html"
+        location.href="../html//login.html"
     }
 
     nav1.innerHTML = html;

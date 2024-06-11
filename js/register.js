@@ -42,7 +42,7 @@ function signup(){
     //* localStorage 저장
     localStorage.setItem('student', JSON.stringify(student));
 
-    alert('학생등록완료!'); location.href='stutable.html';
+    alert('학생등록완료!'); location.href='../html/stutable.html';
 
 }
 
