@@ -12,39 +12,31 @@
     Navbar : "#1675F2"
     width : 1320px;
     10반까지 있음, 1~5반 이과 -> 과학, 6~10반 문과 -> 사회
+    {studentNum : 4, studentName : "ddd", studentCode : 10101, contact : 123-456-7890, pw : 1234}
 */
 
-let score = [
-    {scoreNum : 1, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.1},
-    {scoreNum : 2, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.2},
-    {scoreNum : 3, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.3},
-    {scoreNum : 4, studentNum : 1, korean : 100, english : 100, math : 100, selective : 50, testDate : 2024.4}
-]
-
-let student = [
-    {studentNum : 1, studentName : "aaa", studentCode : 10101, contact : 123-456-7890, pw : 1234},
-    {studentNum : 2, studentName : "bbb", studentCode : 10102, contact : 123-456-7890, pw : 1234},
-    {studentNum : 3, studentName : "ccc", studentCode : 10103, contact : 123-456-7890, pw : 1234},
-    {studentNum : 4, studentName : "ddd", studentCode : 10104, contact : 123-456-7890, pw : 1234}
-]
+let graphScoreList = [];
 
 let selYear = 0; // 0 : 선택하지 않음
 let selClass = 0;
 let selSubject = 0; // 1 2 3 4 국 수 영 사회 과학
-let selScoreMode = 1;
-let selTestYear = 2024;
-let selTestMonth = 1;
-let isGraphDrawn = 0;
-drawChart();
+let selSubjectName = '';
+let selTestYear = 0;
+let selTestMonth = 0;
 
-function drawChart(){ // 학년 반 선택 후 *반 단위* 점수 그래프, 평균 : 전과목(사회과*2)/4 또는 과목별,
+let graphData = [];
+let isGraphDrawn = 0;
+drawContent();
+
+function drawContent(){ // 학년 반 선택 후 *반 단위* 점수 그래프, 평균 : 전과목(사회과*2)/4 또는 과목별,
     
-    if (selYear != 0 && selClass != 0 && selSubject != 0){
+    if (selYear != 0 && selClass != 0 && selSubject != 0 && selTestYear != 0 && selTestMonth != 0){ // 모두 체크했을때
         let subName = subjectName();
-        label = `${selYear}학년 ${selClass}반 ${subName}과목 그래프`
+        let tMonth = testMonth();
+        label = `${selYear}학년 ${selClass}반 ${selTestYear}년 ${tMonth} ${subName}과목 그래프`
+
         let studentNumList = [];
-        let y = [];
-        for (s of student) {// 차트 data 구축 : 학년 반 과목을 고른 후
+        for (s of student) {// 학생 번호 필터
             let code = s.studentCode;
             let codeData = codeSplit(code);
             if (codeData.year == selYear && codeData.class == selClass) {
@@ -52,78 +44,130 @@ function drawChart(){ // 학년 반 선택 후 *반 단위* 점수 그래프, �
             }
         }
 
-        console.log(studentNumList); //필터링된 학생 번호 목록
+        let scores = []; //점수값
+        for (sn of studentNumList) {
+            for (sc of scoreList) {
+                let dateArray = testDateSplit(sc.testDate)
+                if (sc.studentNum == sn && dateArray[0] == selTestYear && dateArray[1] == selTestMonth) {
+                    scores.push(sc[selSubjectName])
+                }
+            }
+        }
+        graphScoreList = scores
 
+        // x축 (이름)
+        let x = [];
+        for (let i = 0; i < studentNumList.length; i++) {
+            //studentName
+            let stdName = ''
+            for (st of student) {
+                if (st.studentNum == studentNumList[i]) {
+                    stdName = st.studentName; break;
+                }
+            }   
+            x.push(stdName)
+
+        }
+        xaxis = x;
+
+        // 그래프
         if (isGraphDrawn == 1) {scoreChart.destroy();}
 
-        let graphData = []; 
-        //for () {
-
-    
         chartHTML = document.querySelector("#scoreChart");
         scoreChart = new Chart(chartHTML, {
             type: 'line',
             data: {
+                labels: xaxis,
                 datasets: [{
-                    "label" : label,
-                    "data" : graphData, // {x: 번호(이름), y: 점수}, {...}],
-                    "backgroundColor" : 'rgb(255, 99, 132)'
+                    label : label,
+                    data : graphScoreList,
+                    backgroundColor : '#8DB9F2'
                     }],
             },
-            options: {
-                scales: {
-                    x: {
-                        type: 'linear',
-                        position: 'bottom'
-                    }
-                }
-            }
         }
         );
 
         isGraphDrawn = 1;
+
+        //math
+        if (graphScoreList.length != 0){
+            document.querySelector("#average").innerHTML = `평균 : ${(math.mean(graphScoreList)).toFixed(2)}`
+            document.querySelector("#std").innerHTML = `표준편차 : ${(math.std(graphScoreList)).toFixed(2)}`
+        }   
+
+        //table
+        document.querySelector("#tableLabel").innerHTML = `${selYear}학년 ${selClass}반 ${selTestYear}년 ${tMonth} 모의고사 점수`;
+        let tbodyHTML = ''; // 학번 이름 (연도 회차 필터된) 점수, 학생번호와 testDate로 찾기
+        for (sn of studentNumList) {
+            let tableCode = 0;
+            let tableName = '';
+            let tableKor = 0;
+            let tableEng = 0;
+            let tableMath = 0;
+            let tableSelective = 0;
+            for (st of student) {
+                if (st.studentNum == sn) {
+                    tableCode = studnt.studentCode;
+                    tableName = studnt.studentName;
+                    break;
+                }
+            }
+            for (sc of scoreList) {
+                let dateArray = testDateSplit(sc.testDate)
+                if (sc.studentNum == sn && dateArray[0] == selTestYear && dateArray[1] == selTestMonth) {
+                    tableKor = sc.korean;
+                    tableEng = sc.english;
+                    tableMath = sc.math;
+                    tableSelective = sc.selective;
+                    break;
+                }
+            }
+
+            tbodyHTML += `<tr scope="col"><td>${tableCode}</td><td>${tableName}</td><td>${tableKor}</td><td>${tableEng}</td><td>${tableMath}</td><td>${tableSelective}</td></tr>`
+        }
+        document.querySelector('#tbody').innerHTML = tbodyHTML;
     };
 }
-
-function drawTable(){
-    
-}
-
 
 function setYear(num){ // 현재 선택한 학년
     selYear = num;
     console.log("선택한 학년 : "+selYear)
-    drawChart();
+    drawContent();
 }
 
 function setClass(num){ // 현재 선택한 반
     selClass = num;
     console.log("선택한 반 : "+selClass)
-    drawChart();
+    drawContent();
 }
 
 function setSubject(num){ // 현재 선택한 과목
     selSubject = num;
-    console.log("선택한 과목 : "+selSubject)
-    drawChart();
-}
 
-function setScoreMode(num){ // 현재 선택한 점수분석
-    selScoreMode = num;
-    console.log("점수 분석 : "+selScoreMode)
-    drawChart();
+    switch (selSubject) {
+        case 1:
+            selSubjectName = 'korean'; break;
+        case 2:
+            selSubjectName = 'english'; break;
+        case 3:
+            selSubjectName = 'math'; break;
+        case 4:
+            selSubjectName = 'selective'; break;
+    }
+    console.log("선택한 과목 : "+selSubject)
+    drawContent();
 }
 
 function setTestYear(num){ // 현재 선택한 시험 연도
     selTestYear = num;
     console.log("시험 연도 : "+selTestYear)
-    drawChart();
+    drawContent();
 }
 
 function setTestMonth(num){ // 현재 선택한 시험 회차
     selTestMonth = num;
     console.log("시험 회차 : "+selTestMonth)
-    drawChart();
+    drawContent();
 }
 
 function subjectName(){
@@ -145,10 +189,31 @@ function subjectName(){
     }
 }
 
+function testMonth(){
+    switch (selTestMonth) {
+        case 1:
+            return '3월';
+        case 2:
+            return '6월';
+        case 3:
+            return '9월';
+        case 4:
+            return '11월';
+    }
+}
+
 function codeSplit(studentCode){ // 학번 쪼개기 1 / 01 / 01 -> {학년 year / 반 class / 번호 no}
     let code = Number(studentCode);
     let year = parseInt(code / 10000);
     let clas = parseInt((code - year*10000) / 100)
     let no = parseInt((code - year*10000) - clas*100)
     return {"year" : year, "class" : clas, "no" : no};
+}
+
+function testDateSplit(testDate){
+    if (testDate != undefined) {
+        tDate = String(testDate)
+        tdArray = tDate.split(".")
+        return tdArray;
+    }
 }
