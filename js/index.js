@@ -1,6 +1,7 @@
 let student = [
     {studentNum : 0, studentName : "admin", studentCode : 10000, contact : 11111111, pw : 987654321},
-    {studentNum : 1, studentName : "user", studentCode : 10101, contact : 11111111, pw : 987654321}
+    {studentNum : 1, studentName : "user", studentCode : 10101, contact : 11111111, pw : 987654321},
+    {studentNum : 2, studentName : "user1", studentCode : 10102, contact : 11111111, pw : 987654321}
 ]
 
 let scoreList = [
