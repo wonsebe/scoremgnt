@@ -107,8 +107,8 @@ function drawContent(){ // 학년 반 선택 후 *반 단위* 점수 그래프, 
             let tableSelective = 0;
             for (st of student) {
                 if (st.studentNum == sn) {
-                    tableCode = studnt.studentCode;
-                    tableName = studnt.studentName;
+                    tableCode = st.studentCode;
+                    tableName = st.studentName;
                     break;
                 }
             }
