@@ -19,7 +19,7 @@ function login() { console.log('login()');
         let member = memberList[i];
         if(member.studentCode == sInfo && member.pw == pw){
 
-            sessionStorage.setItem('studentNum', member.studentNum);
+            sessionStorage.setItem( 'loginNo' ,  member.studentNum );
 
             location.href="../게시판/main.html"
             return;

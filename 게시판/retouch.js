@@ -12,6 +12,9 @@ let boardList = [];
 
 board();
 
+logincheck();
+logincheck2();
+
 function board() {
 
   boardList = JSON.parse(localStorage.getItem('boardList'));

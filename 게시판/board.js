@@ -1,7 +1,8 @@
 
 let boardList = []
 
-let studentList = []
+logincheck();
+logincheck2();
 
 function add() { console.log('add()');
      location.href="write.html";
@@ -14,18 +15,10 @@ function printboard() {
     boardList = JSON.parse(localStorage.getItem('boardList'));
     if(boardList == null){boardList = [];}
 
-    studentList = JSON.parse(localStorage.getItem('student'));
-    if(studentList == null){studentList = []}
-    console.log(studentList)
-
     //어디에
     let boardtbody = document.querySelector('#boardtbody');
     //무엇을
     let html = ``;
-
-    for(let i = 0 ; i < studentList.length; i++){
-        boardList[i].writer = studentList[i].studentName
-    }
 
     for(let i = 0 ; i < boardList.length ; i++){
         html += `<tr> 

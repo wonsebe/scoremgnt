@@ -5,6 +5,8 @@ let boardList = []
 
 
 board();
+logincheck();
+logincheck2();
 
 function board(){
     //어디에 

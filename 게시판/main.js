@@ -3,17 +3,32 @@ let boardList = []
 //localstorage 에서 studentsNum 받아와서 
 //localstorage 에서 studentsName 찾아야함
 
-let memberList = []
+let studentList = []
 
 
 
 printboard();
 printboard1();
 
+logincheck();
+logincheck2();
+
 function printboard() {
     
+    let loginNo = sessionStorage.getItem('loginNo');
+    if(loginNo == null){alert('로그인후 사용 가능한 페이지 입니다.'); location.href="../출결시스템/login.html"}
+
+    studentList = JSON.parse(localStorage.getItem('student'));
+    if(studentList == null){studentList = [];}
+
+    for(let i = 0 ; i < studentList.length; i++){
+        if(studentList[i].no == loginNo){
+            boardList[i].writer = studentList[i].no
+        }
+    }
+
     boardList = JSON.parse(localStorage.getItem('boardList'));
-    if(boardList == null){boardList = []; }
+    if(boardList == null){boardList = [];}
 
     //어디에
     let board2 = document.querySelector('#board2');
