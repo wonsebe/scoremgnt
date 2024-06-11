@@ -1,4 +1,4 @@
-let memberList = []
+let stuent = []
 
 //localstorage 에서 학생배열의 학번 비밀번호 호출
 //유효성검사
@@ -8,16 +8,16 @@ let memberList = []
 
 function login() { console.log('login()');
     //localstorage 에서 학생배열의 학번 비밀번호 호출
-    memberList = JSON.parse(localStorage.getItem('student'));
-    if(memberList == null){memberList = [];}
+    student = JSON.parse(localStorage.getItem('student'));
+    if(student == null){student = [];}
 
     //유효성검사
-    let sInfo = document.querySelector('#sInfo').value;
+    let studentCode = document.querySelector('#studentCode').value;
     let pw = document.querySelector('#pw').value;
 
-    for(i = 0; i < memberList.length; i++){
-        let member = memberList[i];
-        if(member.studentCode == sInfo && member.pw == pw){
+    for(i = 0; i < student.length; i++){
+        let member = student[i];
+        if(member.studentCode == studentCode && member.pw == pw){
 
             sessionStorage.setItem( 'loginNo' ,  member.studentNum );
 

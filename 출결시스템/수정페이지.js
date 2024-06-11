@@ -30,9 +30,9 @@ function __update(){
     console.log(`${student[findIndex]}`)    
     //3.찾은 인덱스의 게시물 정보를 출력
     html += `   
-                학생이름<div>${student[findIndex].name}</div>            
-                학번<div>${student[findIndex].sInfo}</div>
-                연락처<div>${student[findIndex].phone}</div>
+                학생이름<div>${student[findIndex].studentName}</div>            
+                학번<div>${student[findIndex].studentCode}</div>
+                연락처<div>${student[findIndex].contact}</div>
                 비밀번호<div>${student[findIndex].pw}</div>
                 
             `

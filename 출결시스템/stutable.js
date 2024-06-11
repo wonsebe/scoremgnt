@@ -12,9 +12,9 @@ function StuInfo(){
       for(let i=0; i< student.length; i++){
           if(student[i].no ==loginNo){
           document.querySelector('#no').innerHTML = student[i].no;
-          document.querySelector('#name').innerHTML = student[i].name;
-          document.querySelector('#sInfo').innerHTML = student[i].sInfo; 
-          document.querySelector('#phone').innerHTML = student[i].phone;
+          document.querySelector('#studentName').innerHTML = student[i].studentName;
+          document.querySelector('#studentCode').innerHTML = student[i].studentCode; 
+          document.querySelector('#contact').innerHTML = student[i].contact;
           document.querySelector('#pw').innerHTML = student[i].pw;
           return;
       }
@@ -39,10 +39,10 @@ function  _boardPrint(){ console.log('_boardPrint');
             
             html += `<tr>
                     <th>${student[i].no}</th> 
-                    <th> <input id="upOate" value='${student[i].name}' /></th>
-                    <th> <input id="upSate" value='${student[i].sInfo}'</th> 
+                    <th> <input id="upOate" value='${student[i].studentName}' /></th>
+                    <th> <input id="upSate" value='${student[i].studentCode}'</th> 
                     <th> <input id="upPate" value='${student[i].pw}'</th>
-                    <th> <input id="upHate" value='${student[i].phone}'</th>
+                    <th> <input id="upHate" value='${student[i].contact}'</th>
                     <th><button onclick="_delete(${student[i].no})" type="button">삭제</button>
                     <button onclick="__modify(${student[i].no})" type="button">학생정보 상세보기</button>
                     <button onclick="수정활성화(${student[i].no})" type="button">
@@ -54,10 +54,10 @@ function  _boardPrint(){ console.log('_boardPrint');
 
             html += `<tr>
                     <th>${student[i].no}</th> 
-                    <th>${student[i].name}</th>
-                    <th>${student[i].sInfo}</th> 
+                    <th>${student[i].studentName}</th>
+                    <th>${student[i].studentCode}</th> 
                     <th>${student[i].pw}</th>
-                    <th>${student[i].phone}</th>
+                    <th>${student[i].contact}</th>
                     <th><button onclick="_delete(${student[i].no})" type="button">삭제</button>
                     <button onclick="__modify(${student[i].no})" type="button">학생정보 상세보기</button>
                     <button onclick="수정활성화(${student[i].no})" type="button">
@@ -87,10 +87,10 @@ function 수정활성화( no ){
       for( let i = 0 ; i<student.length ; i++ ){
         if( student[i].no == no ){
 
-            student[i].name = upOate;
-            student[i].sInfo = upSate;
+            student[i].studentName = upOate;
+            student[i].studentCode = upSate;
             student[i].pw = upPate;
-            student[i].phone = upHate;
+            student[i].contact = upHate;
             
 
             localStorage.setItem( 'student' , JSON.stringify( student ) );
