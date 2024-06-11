@@ -1,73 +1,147 @@
 
-studentList= JSON.parse(localStorage.getItem('studentList'));
+
 
 
 let loginNo= sessionStorage.getItem('loginNo');
-
-StuInfoPrint();
-
-function StuInfoPrint(){
-  console.log('stuInfoPrint');
-
-  if(studentList == null){studentList=[]}
+StuInfo();
+function StuInfo(){
+  console.log('stuInfo');
+  student= JSON.parse(localStorage.getItem('student'));
+  if(student == null){student=[]}
       //찾기
-      for(let i=0; i< studentList.length; i++){
-          if(studentList[i].no ==studentList){
-          document.querySelector('#no').innerHTML = studentList[i].no;
-          document.querySelector('#name').innerHTML = studentList[i].name;
-          document.querySelector('#sInfo').innerHTML = studentList[i].sInfo; 
-          document.querySelector('#phone').innerHTML = studentList[i].phone;
-          document.querySelector('#pw').innerHTML = studentList[i].pw;
+      for(let i=0; i< student.length; i++){
+          if(student[i].no ==loginNo){
+          document.querySelector('#no').innerHTML = student[i].no;
+          document.querySelector('#name').innerHTML = student[i].name;
+          document.querySelector('#sInfo').innerHTML = student[i].sInfo; 
+          document.querySelector('#phone').innerHTML = student[i].phone;
+          document.querySelector('#pw').innerHTML = student[i].pw;
           return;
       }
    }
 
 }
 
+let 수정중 = -1;
 
-// localStorage에서 데이터 가져오기
-var studentList = JSON.parse(localStorage.getItem('studentList')) || [];
+_boardPrint();
+function  _boardPrint(){ console.log('_boardPrint');
+  student= JSON.parse(localStorage.getItem('student'));
+    if(student==null){student=[];}
+    //어디에
+    let stuTbody= document.querySelector('#stuTbody');  console.log(stuTbody);
+    //무엇을
+    let html='';
+    for(let i=0; i < student.length; i++){
 
-// 테이블에 데이터 추가
-var table = document.getElementById('Ss');
-studentList.forEach(function(student) {
-var row = table.insertRow();
-var noCell = row.insertCell(0);
-var nameCell = row.insertCell(1);
-var sInfoCell = row.insertCell(2);
-var phoneCell = row.insertCell(3);
-var pwCell = row.insertCell(4);
-var buttonCell = row.insertCell(5);
-noCell.textContent = student.no;
-nameCell.textContent = student.name;
-sInfoCell.textContent = student.sInfo;
-phoneCell.textContent = student.phone;
-pwCell.textContent = student.pw;
-var deleteButton = document.createElement('button');
-deleteButton.textContent = '학생탈퇴';
-deleteButton.onclick = function() {
-  deleteRow(this);
-};
-buttonCell.appendChild(deleteButton);
-});
+        // 만약에 수정선택한 학생이면 
+        if( 수정중 == student[i].no ){
+            
+            html += `<tr>
+                    <th>${student[i].no}</th> 
+                    <th> <input id="upOate" value='${student[i].name}' /></th>
+                    <th> <input id="upSate" value='${student[i].sInfo}'</th> 
+                    <th> <input id="upPate" value='${student[i].pw}'</th>
+                    <th> <input id="upHate" value='${student[i].phone}'</th>
+                    <th><button onclick="_delete(${student[i].no})" type="button">삭제</button>
+                    <button onclick="__modify(${student[i].no})" type="button">학생정보 상세보기</button>
+                    <button onclick="수정활성화(${student[i].no})" type="button">
+                        ${ 수정중 == student[i].no ? '수정완료' : '수정활성화' }   
+                    </button>
+                </tr>`
 
-// 테이블에서 행 삭제 함수
-function deleteRow(btn) {
-var row = btn.parentNode.parentNode;
-var rowIndex = row.rowIndex - 1; // 테이블 헤더를 제외한 데이터의 인덱스
-let msgg= alert('학생정보를 지우시겠습니까?'); console.log(msgg);
-// 배열에서 해당 행의 데이터 삭제
-studentList.splice(rowIndex, 1);
+        }else{
 
-// localStorage 업데이트
-localStorage.setItem('studentList', JSON.stringify(studentList));
-
-// 테이블에서 해당 행 삭제
-row.parentNode.removeChild(row);
+            html += `<tr>
+                    <th>${student[i].no}</th> 
+                    <th>${student[i].name}</th>
+                    <th>${student[i].sInfo}</th> 
+                    <th>${student[i].pw}</th>
+                    <th>${student[i].phone}</th>
+                    <th><button onclick="_delete(${student[i].no})" type="button">삭제</button>
+                    <button onclick="__modify(${student[i].no})" type="button">학생정보 상세보기</button>
+                    <button onclick="수정활성화(${student[i].no})" type="button">
+                        ${ 수정중 == student[i].no ? '수정완료' : '수정활성화' }   
+                    </button>
+                </tr>`
+        }
+    }
+    stuTbody.innerHTML = html;
 }
 
-function __update(번호){
+
+function 수정활성화( no ){
     
+    if( 수정중 == -1 ){
+        수정중 = no;
+
+    }else{
+
+        // 새로 입력받은 내용물 
+      let upOate=  document.querySelector('#upOate').value;
+      let upSate=  document.querySelector('#upSate').value;
+      let upPate=  document.querySelector('#upPate').value;
+      let upHate=  document.querySelector('#upHate').value;
+
+      // 누구를 
+      for( let i = 0 ; i<student.length ; i++ ){
+        if( student[i].no == no ){
+
+            student[i].name = upOate;
+            student[i].sInfo = upSate;
+            student[i].pw = upPate;
+            student[i].phone = upHate;
+            
+
+            localStorage.setItem( 'student' , JSON.stringify( student ) );
+
+            break;
+        }
+      }
+
+        수정중 = -1;
+    }
+
+    _boardPrint();
+
 }
+
+
+function _delete(no){
+  console.log('_delete()');
+  //-------------------------------------------------------------//
+          let findBoardIndex = -1;
+      for(let i=0; i< student.length; i++){
+          if(student[i].no == no){findBoardIndex =i; break;}
+      }
+
+      student.splice(findBoardIndex ,1);  // JS 배열 내 객체 삭제
+      localStorage.setItem('student', JSON.stringify(student)); // 삭제 최신화 
+
+      alert('삭제 성공');
+      location.href="stutable.html";
+      return;
+     
+  }
+
+  
+//4.수정페이지로 이동함수:수정버튼 클릭시 이동
+    //로그인된회원 - 게시물작성자 일치 여부
+function __modify(no){
+
+    let findBoardIndex = -1;
+    for(let i=0; i< student.length; i++){
+        if(student[i].no == no){findBoardIndex = i; break;}
+    }
+
+    console.log( student );
+    
+    //무엇을 수정할건지 매개변수 전달
+    location.href=`수정페이지.html?no=${ student[findBoardIndex].no }`;
+
+}
+
+
+
 
 
