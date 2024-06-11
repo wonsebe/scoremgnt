@@ -3,14 +3,16 @@ studentList= JSON.parse(localStorage.getItem('studentList'));
 
 
 let loginNo= sessionStorage.getItem('loginNo');
+
 StuInfoPrint();
+
 function StuInfoPrint(){
   console.log('stuInfoPrint');
 
   if(studentList == null){studentList=[]}
       //찾기
       for(let i=0; i< studentList.length; i++){
-          if(studentList[i].no ==loginNo){
+          if(studentList[i].no ==studentList){
           document.querySelector('#no').innerHTML = studentList[i].no;
           document.querySelector('#name').innerHTML = studentList[i].name;
           document.querySelector('#sInfo').innerHTML = studentList[i].sInfo; 
