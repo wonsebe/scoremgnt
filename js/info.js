@@ -56,6 +56,6 @@ function retouch() {
         if(boardList[i].no == no){findboard = i; break;}
     }
 
-    location.href=`retouch.html?no=${ no }`;
+    location.href=`../html/retouch.html?no=${ no }`;
     
 }

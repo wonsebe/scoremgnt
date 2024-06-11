@@ -57,7 +57,7 @@ function logincheck2() {
         <li class="nav-item"><a class="nav-link" href="../html//score.html">모의고사 성적  </a> </li>
         <li class="nav-item"><a class="nav-link" href="../html/board.html">학생 게시판 </a> </li>`
       } else{
-          location.href="../html//출결시스템/login.html"
+          location.href="../html/login.html"
       }
 
 
@@ -80,7 +80,7 @@ function logincheck() {
       html += `<li class="nav-item"><a class="nav-link"> 학생 </a> </li>`;
       html += `<li class="nav-item"><a class="nav-link" href="../html/login.html" onclick="logout()">로그아웃</a> </li>`
     } else{
-        location.href="../html//login.html"
+        location.href="../html/login.html"
     }
 
     nav1.innerHTML = html;
