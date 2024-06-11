@@ -6,7 +6,7 @@ let loginNo = sessionStorage.getItem('loginNo');
   // 2. 만약에 없으면 로그인 페이지 이동 
 if( loginNo == null ){ 
  alert('로그인후 글쓰기가 가능합니다'); 
- location.href="../출결시스템/login.html";
+ location.href="../html//login.html";
 }
 // 글작성
 
@@ -52,6 +52,6 @@ function abb() { console.log('abb()');
     //저장
     
     alert('작성 되었습니다.');
-    location.href="board.html";
+    location.href="../html/board.html";
 
 }

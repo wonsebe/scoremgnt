@@ -43,7 +43,7 @@ function retouch() {
       localStorage.setItem('boardList', JSON.stringify(boardList));
 
       alert('수정완료 되었습니다.');
-      location.href=`info.html?no=${no}`
+      location.href=`../html/info.html?no=${no}`
     }
   }
 }

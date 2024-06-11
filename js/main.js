@@ -16,7 +16,7 @@ logincheck2();
 function printboard() {
     
     let loginNo = sessionStorage.getItem('loginNo');
-    if(loginNo == null){alert('로그인후 사용 가능한 페이지 입니다.'); location.href="../출결시스템/login.html"}
+    if(loginNo == null){alert('로그인후 사용 가능한 페이지 입니다.'); location.href="../html/login.html"}
 
     studentList = JSON.parse(localStorage.getItem('student'));
     if(studentList == null){studentList = [];}
@@ -67,12 +67,3 @@ function printboard1() {
     //출력
     board1.innerHTML = html;
 }
-
-// function 검사(){
-//     let 검사 = sessionStorage.getItem('studentNum')
-
-//     for(let i = 0; i < 검사.length ; i++){
-//         if(){}else{login();}
-//     }
-    
-// } 가서 물어보고할거

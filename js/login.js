@@ -21,7 +21,7 @@ function login() { console.log('login()');
 
             sessionStorage.setItem( 'loginNo' ,  member.studentNum );
 
-            location.href="../게시판/main.html"
+            location.href="../html/main.html"
             return;
         }
     }
